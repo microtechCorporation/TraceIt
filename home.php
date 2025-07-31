@@ -6,7 +6,7 @@
     <title>TraceIt</title>
 </head>
 <body>
-    <h1>Welcome TraceIt</h1>
+    <h1>Welcome to TraceIt</h1>
     <p>Your one-stop solution for all tracing needs.</p>
 </body>
 </html>
