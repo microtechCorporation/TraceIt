@@ -1,0 +1,157 @@
+
+    :root {
+      --primary: #2a5ee8;
+      --secondary: #1a237e;
+      --accent: #e53935;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-title {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-danger {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .bg-primary {
+      background-color: var(--primary) !important;
+    }
+
+    .text-primary {
+      color: var(--primary) !important;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+
+    .navmenu ul {
+      gap: 1.5rem;
+    padding-right: 1.5rem;
+    }
+
+    /* Feature cards */
+    .feature-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      height: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .step-badge {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 50%;
+      line-height: 30px;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    .accordion-button {
+      font-weight: 600;
+      padding: 1.25rem;
+    }
+
+    .accordion-body {
+      padding: 1.25rem;
+    }
+
+    .accordion-item {
+      margin-bottom: 1rem;
+      border-radius: 8px !important;
+      overflow: hidden;
+    }
+
+    /* Estilos para o menu mobile */
+@media (max-width: 1199.98px) {
+  .navmenu ul {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .navmenu ul li {
+    width: 100%;
+  }
+  
+  .navmenu ul li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  .navmenu ul li.cta-btn a {
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  .navmenu ul li.cta-btn a:hover {
+    background-color: var(--secondary);
+  }
+  
+  .navmenu ul.show {
+    display: flex;
+  }
+  
+  .mobile-nav-toggle {
+    display: block !important;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+/* Estilos para o botaooo no desktop */
+.cta-btn {
+ text-align: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  opacity: 0.9;
+}
