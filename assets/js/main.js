@@ -62,11 +62,9 @@
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
+  window.addEventListener('load', function() {
+    document.getElementById('preloader').style.display = 'none';
+  });
 
   /**
    * Scroll top button
