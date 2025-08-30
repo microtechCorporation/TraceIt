@@ -3,10 +3,10 @@ CREATE TABLE usuarios (
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(150) NOT NULL UNIQUE,
   senha VARCHAR(255) NOT NULL,
-  token_api VARCHAR(255) UNIQUE,         -- Token para autenticação via API
+  token_api VARCHAR(255) UNIQUE,         
   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  ativo BOOLEAN DEFAULT TRUE             --Para ativar/desativar usuários facilmente
+  ativo BOOLEAN DEFAULT TRUE            
 );
 
 CREATE TABLE logs_usuarios (
@@ -46,8 +46,7 @@ CREATE TABLE dispositivos (
   marca VARCHAR(100) NOT NULL,
   modelo VARCHAR(100) NOT NULL,
   cor VARCHAR(50),
-  fotos TEXT,              -- pode guardar URLs separados por vírgula ou JSON
-  observacoes TEXT,
+  fotos TEXT,              
   status ENUM('ativo', 'roubado', 'perdido', 'recuperado') DEFAULT 'ativo',
   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
