@@ -1,11 +1,3 @@
-<!-- chama os modals-->
-<?php
-include("includes/modals/register.php");
-include("includes/modals/login.php")
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -34,14 +26,17 @@ include("includes/modals/login.php")
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/home.css">
 
+
 </head>
 
 <body class="index-page">
-
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
@@ -56,14 +51,13 @@ include("includes/modals/login.php")
           <li><a href="#beneficios">Benefícios</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contato">Contato</a></li>
-          <li class="d-xl-none"><a href="#login" class="cta-btn" data-bs-toggle="modal"
-              data-bs-target="#loginModal">Iniciar Sessão</a></li>
+          <li class="d-xl-none"><a href="auth.php" class="cta-btn">Iniciar Sessão</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
       <div class="d-flex gap-3">
-        <a href="#login" class="cta-btn d-none d-xl-block" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar
+        <a href="auth.php" class="cta-btn d-none d-xl-block">Iniciar
           Sessão</a>
       </div>
 
@@ -71,7 +65,6 @@ include("includes/modals/login.php")
   </header>
 
   <main class="main">
-
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
       <img src="assets/img/hero-bg.jpg" alt="Celular com cadeado de segurança" data-aos="fade-in">
@@ -82,14 +75,13 @@ include("includes/modals/login.php")
         </p>
         <div data-aos="fade-up" data-aos-delay="300" class="d-flex gap-3 my-4">
           <a href="#consultar-imei" class="btn btn-danger w-180 h-50">Consultar IMEI</a>
-          <a href="#cadastro" class="btn btn-outline-light w-180 h-50" data-bs-toggle="modal"
-            data-bs-target="#registerModal">Criar Conta</a>
+          <a href="signup" class="btn btn-outline-light w-180 h-50">Criar Conta</a>
         </div>
       </div>
 
       <div class="about-info mt-auto position-relative">
         <div class="container position-relative" data-aos="fade-up">
-          <div class="row justify-content-center align-items-center text-center text-lg-start"> 
+          <div class="row justify-content-center align-items-center text-center text-lg-start">
             <div class="col-lg-6 mb-4 mb-lg-0">
               <h2 class="text-center text-lg-start">Sobre o TraceMz</h2>
               <p class="text-center text-lg-start">Uma plataforma inovadora para registro e consulta de dispositivos móveis, ajudando vítimas de furto e inibindo o comércio ilegal.</p>
@@ -375,7 +367,7 @@ include("includes/modals/login.php")
           </div>
 
           <div class="col-lg-6">
-            <form  action="app/controllers/send-email.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+            <form action="app/controllers/send-email.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -483,17 +475,17 @@ include("includes/modals/login.php")
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/modals.js"></script>
-
 
 </body>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+
 
 </html>

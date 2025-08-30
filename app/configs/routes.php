@@ -3,6 +3,8 @@
 $routes = [
     '/' => 'home.php',
     '/home' => 'home.php',
-    '/logout' => 'app/controllers/userController.php'
+    '/logout' => 'app/controllers/userController.php',
+    '/signup' => 'signup.php',
+    '/auth' => 'auth.php'
  
 ];
