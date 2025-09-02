@@ -139,7 +139,6 @@ class UserController
             </body>
             </html>
         ";
-
             $mail->AltBody = "Olá {$name}!\n\nPara confirmar seu email, acesse: {$activationLink}\n\nEste link expira em 24 horas.";
 
             return $mail->send();
@@ -160,16 +159,15 @@ class UserController
 
         if ($isLocalhost) {
 
-            $localIP = gethostbyname(gethostname());
-
             $portSuffix = ($port != 80 && $port != 443) ? ":{$port}" : "";
 
-            return "{$protocol}://{$localIP}{$portSuffix}/verificar_email.php?token=" . urlencode($token);
+            return rtrim($host, '/') . '/verificar_email.php?token=' . urlencode($token);
         } else {
             $portSuffix = (($protocol === 'http' && $port != 80) || ($protocol === 'https' && $port != 443)) ? ":{$port}" : "";
             return "{$protocol}://{$host}{$portSuffix}/verificar_email.php?token=" . urlencode($token);
         }
     }
+    
     public function returnJsonResponse($success, $message)
     {
         header('Content-Type: application/json');

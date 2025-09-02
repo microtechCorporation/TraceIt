@@ -27,9 +27,6 @@ session_start();
         <a href="#" class="btn btn-social">
           <i class="bi bi-google text-danger me-2"></i> Continuar com Google
         </a>
-        <a href="#" class="btn btn-social">
-          <i class="bi bi-facebook text-primary me-2"></i> Continuar com Facebook
-        </a>
       </div>
 
       <div class="divider">ou</div>

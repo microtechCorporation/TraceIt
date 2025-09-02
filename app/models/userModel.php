@@ -4,14 +4,16 @@ require_once __DIR__ . '/../configs/database.php';
 class UserModel
 {
     private $db;
+    private $table = "usuarios";
 
     public function __construct()
     {
         $this->db = getConnection();
     }
 
+
     // Funcao para criar conta de usuarios
-    public function createUserAccountModel($name, $email, $password, $active = false) 
+    public function createUserAccountModel($name, $email, $password, $active = false)
     {
         try {
             $token_api = bin2hex(random_bytes(32));
@@ -28,8 +30,8 @@ class UserModel
                 $token_api,
                 $token_verificacao,
                 $token_expiracao,
-                $active, 
-                false  
+                $active,
+                false
             ]) ? $token_verificacao : false;
         } catch (PDOException $e) {
             error_log("Erro ao criar conta: " . $e->getMessage());
@@ -37,12 +39,21 @@ class UserModel
         }
     }
 
-    // Funcao para verificar se o email já existe
+    // Funcao para verificar se o emai existe
     public function emailExistsModel($email)
     {
         $stmt = $this->db->prepare("SELECT id FROM usuarios WHERE email = ?");
         $stmt->execute([$email]);
         return $stmt->fetch() !== false;
+    }
+
+    public function getUserById($id)
+    {
+        $query = "SELECT id, nome, email FROM " . $this->table . " WHERE id = :id AND ativo = TRUE";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     // Verificar token de verificacao

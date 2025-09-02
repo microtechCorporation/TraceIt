@@ -3,7 +3,6 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'dbsistema_tracemz');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('BASE_URL', 'http://192.168.42.198');
 
 function getConnection(){
     try{
