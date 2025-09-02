@@ -51,7 +51,7 @@ session_start();
       </form>
 
       <div class="text-center small">
-        Nao possue uma conta? <a href="signup" class="login-link">registe agora</a>
+        Nao possue uma conta ? <a href="signup" class="login-link">registe agora</a>
       </div>
     </div>
   </div>
