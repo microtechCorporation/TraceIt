@@ -12,4 +12,5 @@ if (array_key_exists($request_uri, $routes)) {
    
     require '404.php';
     exit();
-}
+    
+} 

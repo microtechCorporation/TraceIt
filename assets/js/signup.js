@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             submitButton.disabled = true;
 
-            //  timeout 10 segundos
-            const timeoutDuration = 10000;
+            // timeout 20 segundos
+            const timeoutDuration = 20000;
             const timeoutController = new AbortController();
             const timeoutId = setTimeout(() => timeoutController.abort(), timeoutDuration);
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             title: 'Sucesso!',
                             text: data.message,
                             showConfirmButton: true,
-                            timer: 10000
+                            timer: 20000
                         }).then(() => {
 
                             signupForm.reset();

@@ -20,7 +20,7 @@ if ($usuario) {
     
     if ($sucesso) {
         $_SESSION['success'] = 'Email verificado com sucesso! Sua conta agora está ativa.';
-        header('Location: auth');
+        header('Location: /dashboard');
         exit;
     } else {
         $_SESSION['error'] = 'Erro ao ativar conta. Tente novamente.';
@@ -28,3 +28,5 @@ if ($usuario) {
 } else {
     $_SESSION['error'] = 'Token inválido ou expirado.';
 }
+?>
+<script src="assets/js/signup.js"></script>
