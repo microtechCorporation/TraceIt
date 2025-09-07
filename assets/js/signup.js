@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         }).then(() => {
 
                             signupForm.reset();
+
+                            window.location.href = '/verify_email';
+
                         });
                     } else {
 
@@ -60,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(error => {
                     clearTimeout(timeoutId);
-                    console.error('Erro:',error);
+                    console.error('Erro:', error);
 
                     if (error.name === 'AbortError') {
                         Swal.fire({

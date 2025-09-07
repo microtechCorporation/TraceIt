@@ -7,6 +7,7 @@ $routes = [
     '/signup' => 'signup.php',
     '/auth' => 'auth.php',
     '/verificar_email' => 'verificar_email.php',
-    '/dashboard' => 'app/views/user_dashboard.php',
+    '/dashboard' => 'app/views/user/user_dashboard.php',
+    '/verify_email' => 'verificar_email.php',
 
 ];
