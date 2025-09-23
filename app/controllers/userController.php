@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../models/userModel.php';
+
 class UserController
 {
     private $userModel;
@@ -34,7 +35,6 @@ class UserController
             return;
         }
 
-
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->returnJsonResponse(false, 'Formato de email inválido.');
             return;
@@ -57,13 +57,11 @@ class UserController
             return;
         }
 
-        // Criar conta e obter código de verifica
+        // Criar conta e obter código de verificação
         $verificationCode = $this->userModel->createUserAccountModel($name, $email, $password);
 
         if ($verificationCode) {
-            // Armazenar email na sessão para verificao
             $_SESSION['pending_verification_email'] = $email;
-            // Enviar email de verifica
             $emailSent = $this->sendVerificationEmail($email, $name, $verificationCode);
 
             if ($emailSent) {
@@ -79,7 +77,6 @@ class UserController
         }
     }
 
-    // Verificar code enviado pelo usuário
     public function verifyCodeController()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -95,18 +92,14 @@ class UserController
             return;
         }
 
-        // Verificar código
         $usuario = $this->userModel->verifyCodeModel($email, $code);
 
         if ($usuario) {
-            // Ativar conta
             $sucesso = $this->userModel->activeUsersModel($usuario['id']);
 
             if ($sucesso) {
                 unset($_SESSION['pending_verification_email']);
                 $_SESSION['user_id'] = $usuario['id'];
-                unset($_SESSION['pending_verification_email']);
-
                 $this->returnJsonResponse(true, 'Email verificado com sucesso! Sua conta agora está ativa.');
             } else {
                 $this->returnJsonResponse(false, 'Erro ao ativar conta. Tente novamente.');
@@ -116,14 +109,16 @@ class UserController
         }
     }
 
-    public function loadUserDataController()
+    /**
+     * Método para carregar dados do usuário.
+     * @param int $userId ID do usuário (hardcoded '72' mantido).
+     * @return array Retorna os dados do usuário.
+     */
+    public function loadUserDataController($userId = 72)
     {
-        $userModel = new UserModel();
-        $user = $userModel->loadUserDataModel($_SESSION['user_id']);
-        $this->returnJsonResponse(true, 'Usuário carregado com sucesso!', $user);
+        return $this->userModel->loadUserDataModel($userId);
     }
 
-    // Reenviar código de verificação
     public function resendCodeController()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -141,7 +136,6 @@ class UserController
         $newCode = $this->userModel->resendVerificationCodeModel($email);
 
         if ($newCode) {
-            // Buscar nome do usurio para o email
             $user = $this->userModel->getUserByEmail($email);
             $name = $user ? $user['nome'] : 'Usuário';
 
@@ -157,6 +151,60 @@ class UserController
         }
     }
 
+    /**
+     * Método para atualizar os dados do usuário.
+     */
+    public function updateUserController()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['update_profile'])) {
+            $_SESSION['updateError'] = 'Método não permitido. Use POST.';
+            error_log("Erro no UserController: Método inválido ou update_profile não definido.");
+            header("Location: /app/views/user/user_profile.php");
+            exit;
+        }
+
+        $user_id = $_POST['user_id'] ?? '';
+        $nome = filter_var(trim($_POST['nome'] ?? ''), FILTER_SANITIZE_STRING);
+        $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
+        $email = strtolower($email);
+
+        if (!is_numeric($user_id) || $user_id <= 0) {
+            $_SESSION['updateError'] = 'ID do usuário inválido.';
+            error_log("Erro no UserController: ID do usuário inválido ($user_id).");
+            header("Location: /app/views/user/user_profile.php");
+            exit;
+        }
+
+        if (empty($nome) || empty($email)) {
+            $_SESSION['updateError'] = 'Por favor, preencha todos os campos obrigatórios.';
+            error_log("Erro no UserController: Campos obrigatórios vazios.");
+            header("Location: /app/views/user/user_profile.php");
+            exit;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['updateError'] = 'Formato de email inválido.';
+            error_log("Erro no UserController: Formato de email inválido ($email).");
+            header("Location: /app/views/user/user_profile.php");
+            exit;
+        }
+
+        try {
+            $success = $this->userModel->updateUserModel($user_id, $nome, $email);
+            if ($success) {
+                $_SESSION['updateSuccess'] = 'Perfil atualizado com sucesso!';
+            } else {
+                $_SESSION['updateError'] = 'Erro ao atualizar o perfil. Tente novamente.';
+                error_log("Erro no UserController: Falha ao atualizar usuário ID $user_id.");
+            }
+        } catch (Exception $e) {
+            $_SESSION['updateError'] = 'Erro interno: ' . $e->getMessage();
+            error_log("Erro no UserController: Falha ao atualizar usuário ID $user_id - " . $e->getMessage());
+        }
+
+        header("Location: /app/views/user/user_profile.php");
+        exit;
+    }
 
     private function sendVerificationEmail($email, $name, $code)
     {
@@ -237,8 +285,6 @@ class UserController
     }
 }
 
-
-
 if (isset($_GET['action']) && basename($_SERVER['SCRIPT_NAME']) === 'userController.php') {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -260,4 +306,11 @@ if (isset($_GET['action']) && basename($_SERVER['SCRIPT_NAME']) === 'userControl
             $controller->returnJsonResponse(false, 'Ação inválida!');
             break;
     }
+} elseif (isset($_POST['update_profile']) && basename($_SERVER['SCRIPT_NAME']) === 'userController.php') {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $controller = new UserController();
+    $controller->updateUserController();
 }
+?>

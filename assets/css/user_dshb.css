@@ -2560,6 +2560,36 @@ fieldset:disabled a.btn {
   border-color: #244ec9;
 }
 
+.device-img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.modal-img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.delete-btn {
+  cursor: pointer;
+  color: white;
+  margin-right: 10px;
+}
+.delete-btn:hover {
+  color: #c82333;
+}
+.edit-btn {
+  cursor: pointer;
+  color: #007bff;
+  margin-right: 10px;
+}
+.edit-btn:hover {
+  color: #0056b3;
+}
+
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
@@ -10262,7 +10292,6 @@ a:focus {
   padding-right: 1.5rem;
 }
 
-
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -10280,7 +10309,7 @@ a:focus {
 }
 
 #preloader::before {
-  content: '';
+  content: "";
   width: 40px;
   height: 40px;
   border: 4px solid #f82249; /* Cor do tema */
@@ -10291,8 +10320,12 @@ a:focus {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .scroll-to-top {
@@ -10306,7 +10339,7 @@ a:focus {
   color: white;
   background: #f82249;
   border: blue;
-  border-radius:  50px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

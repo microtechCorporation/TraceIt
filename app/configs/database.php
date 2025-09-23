@@ -2,7 +2,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'dbsistema_tracemz');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'elihudcl777');
 
 function getConnection(){
     try{

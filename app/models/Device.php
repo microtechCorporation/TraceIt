@@ -7,8 +7,8 @@ class Device {
     private $table = 'dispositivos';
 
     public function __construct() {
-        $database = new Database();
-        $this->conn = $database->connect();
+        //$database = new Database();
+        //$this->conn = $database->connect();
     }
 
     public function getDevicesByUserId($user_id) {
