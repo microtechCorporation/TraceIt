@@ -46,7 +46,7 @@ class UserController
         }
 
         if (strlen($password) < 8) {
-            $this->returnJsonResponse(false, 'A senha deve ter no mínimo 8 caracteres.');
+            $this->returnJsonResponse(false, 'As senha deve ter no mínimo 8 caracteres.');
             return;
         }
 
