@@ -58,7 +58,7 @@ class UserController
         }
 
         // Criar conta e obter código de verificação
-        $verificationCode = $this->userModel->createUserAccountModel($name, $email, $password);
+     $verificationCode = $this->userModel->createUserAccountModel($name, $email, $password);
 
         if ($verificationCode) {
             $_SESSION['pending_verification_email'] = $email;
@@ -313,4 +313,3 @@ if (isset($_GET['action']) && basename($_SERVER['SCRIPT_NAME']) === 'userControl
     $controller = new UserController();
     $controller->updateUserController();
 }
-?>
